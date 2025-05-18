@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">D308 Vacation Scheduler Nathan Pons</string>
+    <string name="vacation_list_title">Vacation List</string>
+    <string name="vacation_details_title">Vacation Details</string>
+    <string name="add_vacation">Add Vacation</string>
+    <string name="delete_vacation">Delete Vacation</string>
+    <string name="enter_vacation_name">Vacation Name: </string>
+    <string name="add_sample_data">Add sample data</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="excursions">Excursions</string>
+    <string name="excursion_details_title">Excursion</string>
+    <string name="save_vacation">Save Vacation</string>
+    <string name="save">Save</string>
+    <string name="delete_button">Delete</string>
+    <string name="enter_excursion_name">Excursion Name: </string>
+    <string name="enter_excursion_start_date">Start Date:</string>
+    <string name="start_date">Start Date:</string>
+    <string name="hotel">Hotel:</string>
+</resources>
