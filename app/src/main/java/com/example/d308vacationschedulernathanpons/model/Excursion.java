@@ -16,12 +16,15 @@ public class Excursion {
     private String excursionDate;
     @ColumnInfo(name = "vacation_id")
     private int vacationId;
+    @ColumnInfo(name = "user_id")
+    private int userId;
 
-    public Excursion(int id, String excursionName, String excursionDate, int vacationId) {
+    public Excursion(int id, String excursionName, String excursionDate, int vacationId, int userId) {
         this.id = id;
         this.excursionName = excursionName;
         this.excursionDate = excursionDate;
         this.vacationId = vacationId;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -56,6 +59,14 @@ public class Excursion {
         this.vacationId = vacationId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Excursion{" +
@@ -63,6 +74,7 @@ public class Excursion {
                 ", excursionName='" + excursionName + '\'' +
                 ", excursionDate='" + excursionDate + '\'' +
                 ", vacationId=" + vacationId +
+                ", userId=" + userId +
                 '}';
     }
 }

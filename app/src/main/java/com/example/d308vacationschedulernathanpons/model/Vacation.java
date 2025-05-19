@@ -17,13 +17,16 @@ public class Vacation {
     private String startDate;
     @ColumnInfo(name = "end_date")
     private String endDate;
+    @ColumnInfo(name = "user_id")
+    private int userId;
 
-    public Vacation(int id, String vacationTitle, String hotelName, String startDate, String endDate) {
+    public Vacation(int id, String vacationTitle, String hotelName, String startDate, String endDate, int userId) {
         this.id = id;
         this.vacationTitle = vacationTitle;
         this.hotelName = hotelName;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -66,6 +69,14 @@ public class Vacation {
         this.endDate = endDate;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Vacation{" +
@@ -74,6 +85,7 @@ public class Vacation {
                 ", hotelName='" + hotelName + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
+                ", userId=" + userId +
                 '}';
     }
 }

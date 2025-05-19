@@ -1,5 +1,7 @@
 package com.example.d308vacationschedulernathanpons;
 
+import static com.example.d308vacationschedulernathanpons.VacationListActivity.userId;
+
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
@@ -134,7 +136,7 @@ public class ExcursionDetailsActivity extends AppCompatActivity {
                     intent.putExtra("excursion_date", excursionDate);
                     int id = getIntent().getIntExtra("id", 0);
                     int vacationId = getIntent().getIntExtra("vacation_id", 0);
-                    Excursion excursion = new Excursion(id, excursionName, excursionDate, vacationId);
+                    Excursion excursion = new Excursion(id, excursionName, excursionDate, vacationId, userId);
                     mExcursionlistViewModel.insert(excursion);
 
                     setResult(RESULT_OK, intent);

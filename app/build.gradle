@@ -29,12 +29,14 @@ android {
 }
 
 dependencies {
+    def lifecycle_version = "2.9.0"
     def room_version = "2.7.1"
 
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'

@@ -1,5 +1,7 @@
 package com.example.d308vacationschedulernathanpons;
 
+import static com.example.d308vacationschedulernathanpons.VacationListActivity.userId;
+
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
@@ -50,6 +52,7 @@ public class VacationDetailsActivity extends AppCompatActivity {
     String vacationStartDate;
     String vacationEndDate;
     private static int vacationId;
+    private int vacationUserId;
     private EditText editVacationTitle;
     private EditText editVacationHotel;
     private TextView editVacationStartDate;
@@ -90,6 +93,7 @@ public class VacationDetailsActivity extends AppCompatActivity {
         vacationHotel = getIntent().getStringExtra("hotel_name");
         vacationStartDate = getIntent().getStringExtra("start_date");
         vacationEndDate = getIntent().getStringExtra("end_date");
+        vacationUserId = getIntent().getIntExtra("user_id", -1);
 
         editVacationTitle.setText(vacationTitle);
         editVacationHotel.setText(vacationHotel);
@@ -180,7 +184,7 @@ public class VacationDetailsActivity extends AppCompatActivity {
                     intent.putExtra("start_date", vacationStartDate);
                     intent.putExtra("end_date", vacationEndDate);
                     int id = getIntent().getIntExtra("id", 0);
-                    Vacation vacation = new Vacation(id, vacationTitle, vacationHotel, vacationStartDate, vacationEndDate);
+                    Vacation vacation = new Vacation(id, vacationTitle, vacationHotel, vacationStartDate, vacationEndDate, userId);
                     mVacationListViewModel.insert(vacation);
 
                     setResult(RESULT_OK, intent);
