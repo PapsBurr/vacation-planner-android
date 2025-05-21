@@ -21,6 +21,11 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
     private final Context context;
     private LayoutInflater mInflator;
 
+    public void setFilteredVacations(List<Vacation> filteredVacations) {
+        this.mVacations = filteredVacations;
+        notifyDataSetChanged();
+    }
+
     public class VacationViewHolder extends RecyclerView.ViewHolder {
 
         private final CardView mVacationItemView;

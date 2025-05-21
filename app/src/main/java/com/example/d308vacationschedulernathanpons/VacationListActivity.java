@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,10 @@ public class VacationListActivity extends AppCompatActivity {
     public static int numAlert;
     public static int userId;
 
+    private static List<Vacation> sAllVacations;
+
+    private SearchView searchBar;
+    private VacationAdapter mVacationAdapter;
     private VacationListViewModel mVacationListViewModel;
     private ExcursionListViewModel mExcursionlistViewModel;
 
@@ -47,9 +53,24 @@ public class VacationListActivity extends AppCompatActivity {
             startActivity(intent);
         });
         RecyclerView mRecyclerView = findViewById(R.id.vacation_recycler_view);
-        final VacationAdapter mVacationAdapter = new VacationAdapter(this);
+        mVacationAdapter = new VacationAdapter(this);
         mRecyclerView.setAdapter(mVacationAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        searchBar = findViewById(R.id.search_bar);
+        searchBar.clearFocus();
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterVacations(newText);
+                return true;
+            }
+        });
 
         mVacationListViewModel = new ViewModelProvider(this).get(VacationListViewModel.class);
         mExcursionlistViewModel = new ViewModelProvider(this).get(ExcursionListViewModel.class);
@@ -61,6 +82,7 @@ public class VacationListActivity extends AppCompatActivity {
 
         mVacationListViewModel.getmAllVacations().observe(this, mAllVacations -> {
             List<Vacation> matchingVacations = new ArrayList<>();
+            sAllVacations = mAllVacations;
 
             for (Vacation vacation : mAllVacations) {
                 if (vacation.getUserId() == userId) {
@@ -71,6 +93,18 @@ public class VacationListActivity extends AppCompatActivity {
             mVacationAdapter.setVacations(matchingVacations);
         });
 
+
+
+    }
+
+    private void filterVacations(String text) {
+        List<Vacation> filteredVacations = new ArrayList<>();
+        for (Vacation vacation : sAllVacations) {
+            if (vacation.getVacationTitle().toLowerCase().contains(text.toLowerCase()) && vacation.getUserId() == userId) {
+                filteredVacations.add(vacation);
+            }
+        }
+        mVacationAdapter.setFilteredVacations(filteredVacations);
 
 
     }
