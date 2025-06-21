@@ -31,6 +31,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button logInButton;
     private Button registerButton;
+    private HashGenerator hashGenerator;
     private static User mUser;
     private static List<User> mAllUsers;
 
@@ -52,7 +53,7 @@ public class LogInActivity extends AppCompatActivity {
         mAllUsers = new ArrayList<>();
 
         mLogInViewModel = new ViewModelProvider(this).get(LogInViewModel.class);
-
+        hashGenerator = new HashGenerator();
 
         mLogInViewModel.getmAllUsers().observe(this, users -> {
             mAllUsers = users;
@@ -69,7 +70,7 @@ public class LogInActivity extends AppCompatActivity {
                 if (!mAllUsers.isEmpty()) {
                     for (User user : mAllUsers) {
                         if (user.getUsername().equals(username)) {
-                            if (user.getPassword().equals(password)) {
+                            if (hashGenerator.AuthorizeUser(password, user.getSalt(), user.getPassword())) {
                                 accountExists = true;
                                 Intent intent = new Intent(LogInActivity.this, VacationListActivity.class);
                                 intent.putExtra("username", username);

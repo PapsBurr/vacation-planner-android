@@ -12,7 +12,7 @@ import com.example.d308vacationschedulernathanpons.model.Vacation;
 
 import java.util.ConcurrentModificationException;
 
-@Database(entities = {Vacation.class, Excursion.class, User.class}, version = 16, exportSchema = false)
+@Database(entities = {Vacation.class, Excursion.class, User.class}, version = 19, exportSchema = false)
 public abstract class VacationDatabase extends RoomDatabase {
 
     public abstract VacationDao vacationDao();

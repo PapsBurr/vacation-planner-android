@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Arrays;
+
 @Entity(tableName = "users")
 public class User {
 
@@ -12,15 +14,17 @@ public class User {
     @ColumnInfo(name = "username")
     private String username;
 
-    // IF THIS WERE A REAL APP I WOULD MAKE AND SAVE A HASH IN THE PASSWORD SLOT
-    // but I am out of time :(
     @ColumnInfo(name = "password")
     private String password;
 
-    public User(int id, String username, String password) {
+    @ColumnInfo(name = "salt")
+    private String salt;
+
+    public User(int id, String username, String password, String salt) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.salt = salt;
     }
 
     public int getId() {
@@ -47,12 +51,21 @@ public class User {
         this.password = password;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
                 '}';
     }
 }
